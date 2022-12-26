@@ -28,11 +28,11 @@ export class SendNotification {
     });
     // Persistir las notificaciones
 
-    await this.notificationRepository.create( notification );
+        await this.notificationRepository.create(notification);
 
-    return {
-        notification,
+        return {
+            notification,
+        }
+
     }
-
-   }
 }
