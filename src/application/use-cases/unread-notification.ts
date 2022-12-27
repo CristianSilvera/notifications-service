@@ -3,18 +3,18 @@ import { Injectable } from '@nestjs/common'
 import { NotificationNotFound } from "./errors/notification-not-found";
 
 
-interface ReadNotificationRequest {
+interface UnreadNotificationRequest {
     notificationId: string;
 }
 
-type ReadNotificationResponse = void;
+type UnreadNotificationResponse = void;
 
 @Injectable()
-export class ReadNotification {
+export class UnreadNotification {
     constructor(private notificationRepository: NotificationRepository) { }
     async execute(
-        request: ReadNotificationRequest,
-    ): Promise<ReadNotificationResponse> {
+        request: UnreadNotificationRequest,
+    ): Promise<UnreadNotificationResponse> {
 
         const { notificationId } = request;
 
@@ -24,7 +24,7 @@ export class ReadNotification {
             throw new NotificationNotFound();
         }
 
-        notification.read();
+        notification.unread();
 
         await this.notificationRepository.save(notification);
 
